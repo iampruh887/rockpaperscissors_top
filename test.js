@@ -4,17 +4,18 @@ const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissor = document.querySelector(".scissor");
 let gameActive = true;
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissor"];
-  const k = Math.random();
-  if (k <= 0.33) return choices[0];
-  else if (k <= 0.66) return choices[1];
-  else return choices[2];
-}
 
+  k = Math.random();
+  if (k <= 0.33) {
+    return choices[0];
+  } else if (k <= 0.66) {
+    return choices[1];
+  } else {
+    return choices[2];
+  }
+}
 function handleChoice(choice) {
   if (!gameActive) return;
   gameActive = false;
@@ -44,43 +45,22 @@ function handleChoice(choice) {
     computerElement.classList.add("computer-choice");
 
     // Determine winner and show result
-    setTimeout(() => {
-      const result = playRound(choice, computerChoice);
-      if (result === 0) {
-        // human lost
-        elements[choice].classList.add("destroy");
-        computerScore++;
-      } else if (result === 1) {
-        // human won
-        computerElement.classList.add("destroy");
-        humanScore++;
-      } else {
-        // tie
-        elements[choice].style.border = "10px green solid";
-        computerElement.style.border = "10px green solid";
-      }
-
-      // Update score display
-      updateScore();
-    }, 1000);
+    const result = playRound(choice, computerChoice);
+    if (result === 0) {
+      // human lost
+      elements[choice].classList.add("destroy");
+    } else if (result === 1) {
+      // human won
+      computerElement.classList.add("destroy");
+    } else {
+      // tie
+      elements[choice].style.border = "10px green solid";
+      computerElement.style.border = "10px green solid";
+    }
 
     // Reset after delay
     setTimeout(resetGame, 2500);
-  }, 300);
-}
-
-function playRound(humanChoice, computerChoice) {
-  if (humanChoice === computerChoice) {
-    return 2; // Tie
-  }
-
-  if (humanChoice === "rock") {
-    return computerChoice === "paper" ? 0 : 1;
-  } else if (humanChoice === "paper") {
-    return computerChoice === "scissor" ? 0 : 1;
-  } else if (humanChoice === "scissor") {
-    return computerChoice === "rock" ? 0 : 1;
-  }
+  }, 1000);
 }
 
 function resetGame() {
@@ -94,10 +74,6 @@ function resetGame() {
     element.style.border = "";
   });
   gameActive = true;
-}
-
-function updateScore() {
-  console.log(`Score - Human: ${humanScore}, Computer: ${computerScore}`);
 }
 
 rock.addEventListener("click", () => handleChoice("rock"));
