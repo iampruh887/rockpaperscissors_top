@@ -1,0 +1,61 @@
+.top {
+    display: flex;
+    gap: 50px;
+    margin-top: 300px;
+    justify-content: center;
+}
+
+/* Base styles for all choices - visible by default */
+.rock,
+.paper,
+.scissor {
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+/* Default background images */
+.rock {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Logan_Rock_Treen_closeup.jpg/1280px-Logan_Rock_Treen_closeup.jpg");
+}
+
+.paper {
+    background-image: url("https://wachastory.com/wp-content/uploads/2021/01/A4-Paper-1.jpg");
+}
+
+.scissor {
+    background-image: url("https://pngimg.com/uploads/scissors/scissors_PNG28.png");
+}
+
+/* Styles for chosen element */
+.chosen {
+    height: 250px;
+    width: 250px;
+    border: 3px red solid;
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Styles for not chosen elements */
+.notchosen {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+/* Style for computer's choice */
+.computer-choice {
+    height: 250px;
+    width: 250px;
+    border: s3px blue solid;
+    opacity: 1;
+    transform: scale(1.2);
+    transition: all 0.5s ease;
+}
+
+.destroy {
+    background-image: url("https://www.itl.cat/pngfile/big/49-490611_lovely-broken-screen-wallpaper-cracked-glass.jpg") !important;
+}
